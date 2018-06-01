@@ -44,88 +44,136 @@ Cache::~Cache(){
 }
 
 /** Retorna a quantidade de palavras por bloco*/
-int Cache::getPalavras()			{ return qtdPalavras;		}
+int Cache::getPalavras(){
+	return qtdPalavras;		
+}
 
 /** Retorna a quantidade de linhas da cache */
-int Cache::getLinhas()				{ return qtdLinhas;			}
+int Cache::getLinhas(){
+	return qtdLinhas;
+}
 
 /** Retorna a quantidade de blocos da memoria principal */
-int Cache::getPrincipal()			{ return memPrincipal;		}
+int Cache::getPrincipal(){ 
+	return memPrincipal;
+}
 
 /** Retorna o tipo de mapeamento */
-int Cache::getMapeamento()			{ return mapeamento;		}
+int Cache::getMapeamento(){
+	return mapeamento;
+}
 
 /** Retorna a quantidade de vias (N-way) */
-int Cache::getVias()				{ return vias;				}
+int Cache::getVias(){ 
+	return vias;
+}
 
 /** Retorna a politica de substituicao */
-int Cache::getSubstituicao()		{ return polSubstituicao;	}
+int Cache::getSubstituicao(){
+	return polSubstituicao;
+}
 
 /** Retorna a quantidade de hits*/
-int Cache::getHit()					{ return hit;				}
+int Cache::getHit(){ 
+	return hit;
+}
 
 /** Retorna a quantidade de misses */
-int Cache::getMiss()				{ return miss;				}
+int Cache::getMiss(){
+	return miss;
+}
 
 /** Retorna o vetor de frequencia*/
-int* Cache::getFreq()				{ return freq;				}
+int* Cache::getFreq(){
+	return freq;
+}
 
 /** Retorna o vetor de cache */
-int* Cache::getVetor()				{ return vetor;				}
+int* Cache::getVetor(){
+	return vetor;
+}
 
 /** Retorna matriz de cache (N-way)*/
-int** Cache::getMatriz()			{ return matriz;			}
+int** Cache::getMatriz(){ 
+	return matriz;
+}
 
 /** Retorna a matriz de frequencia (N-way)*/
-int** Cache::getFreqMatriz()		{ return freqMatriz;		}
+int** Cache::getFreqMatriz(){
+	return freqMatriz;
+}
 
 /** Atualiza a quantidade de palavras
 *  p A nova quantidade de palavras */
-void Cache::setPalavras(int p)		{ qtdPalavras = p; 		}
+void Cache::setPalavras(int p){ 
+	qtdPalavras = p;
+}
 
 /** Atualiza a quantidade de linhas
 	*  l A nova quantidade de linhas*/
-void Cache::setLinhas(int l)		{ qtdLinhas = l; 		}
+void Cache::setLinhas(int l){ 
+	qtdLinhas = l;
+}
 
 /** Atualiza a quantidade de blocos da memoria principal
 	*  m A nova quantidade de blocos da memoria principal*/
-void Cache::setPrincipal(int m)		{ memPrincipal = m; 	}
+void Cache::setPrincipal(int m){
+	memPrincipal = m;
+}
 
 /** Atualiza a nova forma de mapeamento
 	*  mp A nova nova forma de mapeamento*/
-void Cache::setMapeamento(int mp)	{ mapeamento = mp; 		}
+void Cache::setMapeamento(int mp){
+	mapeamento = mp;
+}
 
 /** Atualiza a quantidade de vias (N-way)
 	*  v A nova quantidade de vias (N-way)*/
-void Cache::setVias(int v)			{ vias = v; 			}
+void Cache::setVias(int v){ 
+	vias = v;
+}
 
 /** Atualiza a politica de substituicao 
 	*  s A nova politica de substituicao */
-void Cache::setSubstituicao(int s)	{ polSubstituicao = s; 	}
+void Cache::setSubstituicao(int s){
+	polSubstituicao = s;
+}
 
 /** Atualiza a quantidade de hits
 	*  h A nova quantidade de hits*/
-void Cache::setHit(int h)			{ hit = h;				}
+void Cache::setHit(int h){ 
+	hit = h;
+}
 
 /** Atualiza a quantidade de misses
 	*  ms A nova quantidade de misses*/
-void Cache::setMiss(int ms)			{ miss = ms;			}
+void Cache::setMiss(int ms){ 
+	miss = ms;
+}
 
 /** Atualiza o vetor de frequencia 
 	*  fr O novo vetor de frequencia */
-void Cache::setFreq(int* fr)		{ freq = fr; 			}
+void Cache::setFreq(int* fr){ 
+	freq = fr; 
+}
 
 /** Atualiza o vetor de cache 
 	*  vt O novo vetor de cache */
-void Cache::setVetor(int* vt)		{ vetor = vt; 			}
+void Cache::setVetor(int* vt){ 
+	vetor = vt;
+}
 
 /** Atualiza a matriz de cache (N-way)
 	*  m A nova matriz de cache (N-way)*/
-void Cache::setMatriz(int** m)		{ matriz = m;			}
+void Cache::setMatriz(int** m){ 
+	matriz = m;
+}
 
 /** Atualiza a matriz de frequencia (N-way) 
 	*  fm A nova matriz de frequencia (N-way) */
-void Cache::setFreqMatriz(int** fm)	{ freqMatriz = fm;		}
+void Cache::setFreqMatriz(int** fm){
+	freqMatriz = fm;
+}
 
 /** Funcao que calcula a quantidade maxima de enderecos da memoria da principal
 	* Retorna a quantidade maxima de enderecos*/
