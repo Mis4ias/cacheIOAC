@@ -56,7 +56,7 @@ public:
 	int getVias();
 
 	/**@return Retorna a politica de substituicao */
-	int getSubstituicao();
+	int getPoliticaSubistituicao();
 
 	/**@return Retorna a quantidade de hits*/
 	int getHit();
@@ -86,7 +86,7 @@ public:
 
 	/**@brief Atualiza a quantidade de blocos da memoria principal
 	* @param m A nova quantidade de blocos da memoria principal*/
-	void setPrincipal(int m);
+	void setMemPrincipal(int m);
 
 	/**@brief Atualiza a nova forma de mapeamento
 	* @param mp A nova nova forma de mapeamento*/
@@ -98,7 +98,7 @@ public:
 
 	/**@brief Atualiza a politica de substituicao 
 	* @param s A nova politica de substituicao */
-	void setSubstituicao(int s);
+	void setPoliticaSubistituicao(int s);
 
 	/**@brief Atualiza a quantidade de hits
 	* @param h A nova quantidade de hits*/

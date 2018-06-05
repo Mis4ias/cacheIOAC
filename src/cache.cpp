@@ -66,7 +66,7 @@ int Cache::getVias(){
 }
 
 /** Retorna a politica de substituicao */
-int Cache::getSubstituicao(){
+int Cache::getPoliticaSubistituicao(){
 	return polSubstituicao;
 }
 
@@ -114,7 +114,7 @@ void Cache::setLinhas(int l){
 
 /** Atualiza a quantidade de blocos da memoria principal
 	*  m A nova quantidade de blocos da memoria principal*/
-void Cache::setPrincipal(int m){
+void Cache::setMemPrincipal(int m){
 	memPrincipal = m;
 }
 
@@ -132,7 +132,7 @@ void Cache::setVias(int v){
 
 /** Atualiza a politica de substituicao 
 	*  s A nova politica de substituicao */
-void Cache::setSubstituicao(int s){
+void Cache::setPoliticaSubistituicao(int s){
 	polSubstituicao = s;
 }
 
@@ -207,7 +207,7 @@ int Cache::calcBlocoPrincipal(int end){
 /** Funcao principal que direciona a politica de substituicao, mapeamento,  etc. */
 void Cache::mainCache(){
 	short int end=1;
-	while(end>=0 and end<getPalavras()*getPrincipal()){ //MAX_ENDERECO_POSSIVEIS
+	while(end>=0 and end<getPalavras()*getPrincipal()){ //Maximos Enderecos Possiveis
 		end = solicitarEndereco();
 		if(end==-1) return;
 
@@ -246,7 +246,7 @@ int Cache::mapeamentoCache(int end){
 		cout << "Mapeamento Totalmente Associativo" << endl;
 		mapeado = substituicaoCache(getVetor(), getFreq(), end);
 		exibirCache();
-		if(1!=getSubstituicao()) exibirFreq();
+		if(1!=getPoliticaSubistituicao()) exibirFreq();
 
 		//Com politica de substituicao
 
@@ -278,16 +278,16 @@ void Cache::atualizarFrequenciaFIFO(int *f){
 int Cache::substituicaoCache(int *v, int *f, int end){
 
 	//Comum a todos
-	if(1==getSubstituicao()) cout << "Substituicao Aleatoria" << endl;
-	if(2==getSubstituicao()) cout << "Substituicao FIFO" << endl;
-	if(3==getSubstituicao()) cout << "Substituicao LFU" << endl;
-	if(4==getSubstituicao()) cout << "Substituicao LRU" << endl;
+	if(1==getPoliticaSubistituicao()) cout << "Substituicao Aleatoria" << endl;
+	if(2==getPoliticaSubistituicao()) cout << "Substituicao FIFO" << endl;
+	if(3==getPoliticaSubistituicao()) cout << "Substituicao LFU" << endl;
+	if(4==getPoliticaSubistituicao()) cout << "Substituicao LRU" << endl;
 	cout << "Buscando o bloco " << end;
 
 	bool freeFlag=false;
 	int aux=-1;
 
-	if(4==getSubstituicao()){
+	if(4==getPoliticaSubistituicao()){
 		for (int i=0; i<getLinhas(); i++) {
 			f[i]--;
 			if(f[i]<0) f[i]=0;
@@ -298,10 +298,10 @@ int Cache::substituicaoCache(int *v, int *f, int end){
 		if(v[i]==end){
 			cout << endl << endl << " -> --- HIT ---" << endl << endl;
 			setHit(getHit()+1);
-			if(3==getSubstituicao()){
+			if(3==getPoliticaSubistituicao()){
 				f[i]++;
 			}
-			if(4==getSubstituicao()){
+			if(4==getPoliticaSubistituicao()){
 				f[i]=getLinhas();
 			}
 			return i;
@@ -316,26 +316,26 @@ int Cache::substituicaoCache(int *v, int *f, int end){
 
 	if(freeFlag) {
 		v[aux]=end;
-		if(2==getSubstituicao()){
+		if(2==getPoliticaSubistituicao()){
 			f[aux]=getLinhas();
 			atualizarFrequenciaFIFO(f);
 		}
-		if(3==getSubstituicao()){
+		if(3==getPoliticaSubistituicao()){
 			f[aux]=1;
 		}
-		if(4==getSubstituicao()){
+		if(4==getPoliticaSubistituicao()){
 			f[aux]=getLinhas();
 		}
 		return aux;
 	} 
 	else {
-		if(1==getSubstituicao()){
+		if(1==getPoliticaSubistituicao()){
 			//RANDOM
 			aux = rand() % getLinhas();
 			v[aux]=end;
 			return aux;		
 			//Com Politica de Escrita
-		} else if (2==getSubstituicao()){
+		} else if (2==getPoliticaSubistituicao()){
 			//FIFO		
 			aux=f[0];
 			int auxI=0;
@@ -353,7 +353,7 @@ int Cache::substituicaoCache(int *v, int *f, int end){
 			return auxI;
 			//Com politica de substituicao e Escrita
 
-		} else if (3==getSubstituicao()){
+		} else if (3==getPoliticaSubistituicao()){
 			//cout << "Substituicao LFU" << endl;
 			aux=f[0];
 			int auxI=0;
@@ -368,7 +368,7 @@ int Cache::substituicaoCache(int *v, int *f, int end){
 			return auxI;
 			//Com politica de substituicao e Escrita
 
-		} else if (4==getSubstituicao()){
+		} else if (4==getPoliticaSubistituicao()){
 			//cout << "Substituicao LRU" << endl;
 			aux=f[0];
 			int auxI=0;
@@ -418,9 +418,9 @@ void Cache::criar(){
 			v[i]=-1;
 			f[i]=0;
 		}
-		if(getSubstituicao()==4) {
+		if(getPoliticaSubistituicao()==4) {
 			for(int i=0; i<getLinhas(); i++) {
-				f[i]=getSubstituicao();
+				f[i]=getPoliticaSubistituicao();
 			}
 		}
 		setVetor(v);
@@ -438,7 +438,7 @@ int Cache::viasCache(int end){
 		cout << "Vias" << endl;
 		cout << "Mapeado no bloco " << substituicaoCache(m[end%getVias()], fm[end%getVias()], end) << " da via " << end%getVias() << endl;
 		exibirCacheMatriz();
-		if(getSubstituicao()==3 or getSubstituicao()==2 or getSubstituicao()==4) exibirFreqMatriz();
+		if(getPoliticaSubistituicao()==3 or getPoliticaSubistituicao()==2 or getPoliticaSubistituicao()==4) exibirFreqMatriz();
 		
 	
 		//matriz

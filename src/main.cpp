@@ -27,12 +27,12 @@ int main (){
 
 	arquivo.close();
 	cout << "===========================================" << endl;
-	cout << "Palavras por bloco: 	-> " << dados.getPalavras() << endl;
-	cout << "Linhas da cache: 	-> " << dados.getLinhas() << endl;
-	cout << "Blocos da principal: 	-> " << dados.getPrincipal() << endl;
-	cout << "Mapeamento: 		-> " << dados.getMapeamento() << endl;
-	cout << "Vias: 			-> " << dados.getVias() << endl;
-	cout << "Substituicao: 		-> " << dados.getSubstituicao() << endl;
+	cout << "Palavras por bloco: 	  -> " << dados.getPalavras() << endl;
+	cout << "Linhas da cache: 	  -> " << dados.getLinhas() << endl;
+	cout << "Blocos da principal: 	  -> " << dados.getPrincipal() << endl;
+	cout << "Mapeamento: 		  -> " << dados.getMapeamento() << endl;
+	cout << "Vias: 			  -> " << dados.getVias() << endl;
+	cout << "Politica de Substituicao: -> " << dados.getPoliticaSubistituicao() << endl;
 
 	dados.criar();
 	dados.mainCache();
@@ -47,6 +47,6 @@ int main (){
 		cout << "Porcentagem de acertos: " << porcentagem*100 << "%" << endl;
 	}
 
-	cout << "Encerrando simulador..." << endl;
+	cout << "Encerrando simulador... Thank you for using" << endl;
 	return 0;
 }

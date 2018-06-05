@@ -27,7 +27,7 @@ void abrirArquivo(ifstream *arquivo){
 	string arq;
 	cout << "Digite o endereco do arquivo: ";
 	//cin >> arq;
-	arq = "./data/dados.txt";
+	arq = "../data/dados.txt";
 
 	arquivo->open(arq);
 	if(!(*arquivo)){
@@ -51,7 +51,7 @@ void loadData(Cache* dados, ifstream* arquivo){
 	dados->setLinhas(atoi(aux.c_str()));
 
 	getline(*arquivo, aux);
-	dados->setPrincipal(atoi(aux.c_str()));
+	dados->setMemPrincipal(atoi(aux.c_str()));
 
 	getline(*arquivo, aux);
 	dados->setMapeamento(atoi(aux.c_str()));
@@ -60,5 +60,5 @@ void loadData(Cache* dados, ifstream* arquivo){
 	dados->setVias(atoi(aux.c_str()));
 
 	getline(*arquivo, aux);
-	dados->setSubstituicao(atoi(aux.c_str()));
+	dados->setPoliticaSubistituicao(atoi(aux.c_str()));
 }
