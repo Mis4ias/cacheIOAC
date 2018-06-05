@@ -1,9 +1,9 @@
 /**
  * @file	arquivo.h
  * @brief	Definicao de funcoes que envolvem arquivos e cache
- * @author	Luan Pereira (luanpereira00@outlook.com)
- * @since	01/06/2017
- * @date	01/06/2017
+ * @author	Misael Damasceno 
+ * @since	11/06/2018
+ * @date 	11/06/2018
  */
 #ifndef ARQUIVO_H
 #define ARQUIVO_H

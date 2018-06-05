@@ -24,7 +24,6 @@ using std::setw;
 Cache::Cache(){
 	miss=0;
 	hit=0;
-	/** Faz nada */
 }
 
 /* Destrutor padrao */
@@ -39,8 +38,6 @@ Cache::~Cache(){
 		delete[] vetor;
 		delete[] freq;
 	}
-
-	/** Faz nada */
 }
 
 /** Retorna a quantidade de palavras por bloco*/
@@ -63,7 +60,7 @@ int Cache::getMapeamento(){
 	return mapeamento;
 }
 
-/** Retorna a quantidade de vias (N-way) */
+/** Retorna a quantidade de vias () */
 int Cache::getVias(){ 
 	return vias;
 }
@@ -93,12 +90,12 @@ int* Cache::getVetor(){
 	return vetor;
 }
 
-/** Retorna matriz de cache (N-way)*/
+/** Retorna matriz de cache ()*/
 int** Cache::getMatriz(){ 
 	return matriz;
 }
 
-/** Retorna a matriz de frequencia (N-way)*/
+/** Retorna a matriz de frequencia ()*/
 int** Cache::getFreqMatriz(){
 	return freqMatriz;
 }
@@ -127,8 +124,8 @@ void Cache::setMapeamento(int mp){
 	mapeamento = mp;
 }
 
-/** Atualiza a quantidade de vias (N-way)
-	*  v A nova quantidade de vias (N-way)*/
+/** Atualiza a quantidade de vias ()
+	*  v A nova quantidade de vias ()*/
 void Cache::setVias(int v){ 
 	vias = v;
 }
@@ -163,14 +160,14 @@ void Cache::setVetor(int* vt){
 	vetor = vt;
 }
 
-/** Atualiza a matriz de cache (N-way)
-	*  m A nova matriz de cache (N-way)*/
+/** Atualiza a matriz de cache ()
+	*  m A nova matriz de cache ()*/
 void Cache::setMatriz(int** m){ 
 	matriz = m;
 }
 
-/** Atualiza a matriz de frequencia (N-way) 
-	*  fm A nova matriz de frequencia (N-way) */
+/** Atualiza a matriz de frequencia () 
+	*  fm A nova matriz de frequencia () */
 void Cache::setFreqMatriz(int** fm){
 	freqMatriz = fm;
 }
@@ -207,7 +204,7 @@ int Cache::calcBlocoPrincipal(int end){
 	return ((end - (end % getPalavras()))/getPalavras());
 }
 
-/** Funcao principal que direciona a politica de substituicao, mapeamento, N-way etc. */
+/** Funcao principal que direciona a politica de substituicao, mapeamento,  etc. */
 void Cache::mainCache(){
 	short int end=1;
 	while(end>=0 and end<getPalavras()*getPrincipal()){ //MAX_ENDERECO_POSSIVEIS
@@ -279,15 +276,14 @@ void Cache::atualizarFrequenciaFIFO(int *f){
 	* end O endereco
 	* Retorna o local de substituicao */
 int Cache::substituicaoCache(int *v, int *f, int end){
-	//cout << "Substituicao FIFO" << endl;
+
 	//Comum a todos
 	if(1==getSubstituicao()) cout << "Substituicao Aleatoria" << endl;
 	if(2==getSubstituicao()) cout << "Substituicao FIFO" << endl;
 	if(3==getSubstituicao()) cout << "Substituicao LFU" << endl;
 	if(4==getSubstituicao()) cout << "Substituicao LRU" << endl;
 	cout << "Buscando o bloco " << end;
-	//int* v = getVetor();
-	//int* f = getFreq();
+
 	bool freeFlag=false;
 	int aux=-1;
 
@@ -444,7 +440,7 @@ int Cache::viasCache(int end){
 		exibirCacheMatriz();
 		if(getSubstituicao()==3 or getSubstituicao()==2 or getSubstituicao()==4) exibirFreqMatriz();
 		
-		//cout << end << "  " << end % getLinhas() << endl;;
+	
 		//matriz
 		//bloco da principal indica a via e o bloco
 
@@ -493,7 +489,7 @@ void Cache::exibirFreq(){
 	cout << "] -> Numero do bloco da cache" << endl << endl;
 }
 
-/** Funcao que imprime a matriz de cache (N-way)*/
+/** Funcao que imprime a matriz de cache ()*/
 void Cache::exibirCacheMatriz(){
 	int **m = getMatriz();
 	cout << "------- Cache -------" <<endl;
@@ -515,7 +511,7 @@ void Cache::exibirCacheMatriz(){
 	cout << "] -> Numero de blocos da cache"<< endl << endl;
 }
 
-/** Funcao que a matriz de frequencia (N-way)*/
+/** Funcao que a matriz de frequencia ()*/
 void Cache::exibirFreqMatriz(){
 	int **m = getMatriz();
 	int **fm = getFreqMatriz();

@@ -4,9 +4,9 @@
  * @details Os atributos de uma Cache sao a quantidade de palavras por bloco, a quantidade de linhas da cache,
  * a quantidade de blocos da memoria principal, o tipo de mapeamento, o tipo de substituicao, quantidade de hits,
  * quantidade de misses, o vetor de frequencia, o vetor de cache, a matriz N-way e a frequencia de matriz N-way.
- * @author	Luan Pereira (luanpereira00@outlook.com)
- * @since	01/06/2017
- * @date	01/06/2017
+ * @author	Misael Damasceno
+ * @since	11/06/2018
+ * @date	11/06/2018
  */
 
 #ifndef CACHE_H

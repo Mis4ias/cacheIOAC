@@ -26,8 +26,8 @@ using std::exit;
 void abrirArquivo(ifstream *arquivo){
 	string arq;
 	cout << "Digite o endereco do arquivo: ";
-	//cin >> arq;
-	arq = "../data/dados.txt";
+	cin >> arq;
+	
 
 	arquivo->open(arq);
 	if(!(*arquivo)){
