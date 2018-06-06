@@ -182,18 +182,18 @@ int Cache::memPalavras(){
 	* Retorna o endereco */
 int Cache::solicitarEndereco(){
 	int end;
-	cout << "===========================================" << endl;
-	cout << endl << "--- Simulador de Cache ---" << endl;
+	cout << "__________________________________________" << endl;
+	cout << endl << "*** Simulador de Cache ***" << endl;
 	do{
 		cout << "Enderecos validos: " << 0 << " - " << memPalavras()-1 << endl;
 		cout << "Sair: -1" << endl;
 		cout << "Digite a opcao: ";
 		cin >> end;
 
-		if((end<-1 or end >= memPalavras())){
-			cerr << endl << "Endereco errado! Tente novamente..." << endl;
+		if((end<-1 || end >= memPalavras())){
+			cerr << endl << "Endereco errado!!!! Tente novamente..." << endl;
 		}
-	}while(end<-1 or end >= memPalavras());
+	}while(end<-1 || end >= memPalavras());
 	return end;
 }
 
@@ -207,7 +207,7 @@ int Cache::calcBlocoPrincipal(int end){
 /** Funcao principal que direciona a politica de substituicao, mapeamento,  etc. */
 void Cache::mainCache(){
 	short int end=1;
-	while(end>=0 and end<getPalavras()*getPrincipal()){ //Maximos Enderecos Possiveis
+	while(end>=0 && end<memPalavras()){ //Maximos Enderecos Possiveis
 		end = solicitarEndereco();
 		if(end==-1) return;
 
@@ -230,11 +230,11 @@ int Cache::mapeamentoCache(int end){
 		int* v = getVetor();
 		cout << "Buscando o bloco " << end;
 		if(v[end % getLinhas()]==end) {
-			cout << endl << endl << " -> --- HIT ---" << endl << endl;
+			cout << endl << endl << " -> *** HIT ***" << endl << endl;
 			setHit(getHit()+1);
 		}
 		else {
-			cout << endl << endl << " -> --- MISS ---" << endl << endl;
+			cout << endl << endl << " -> *** MISS ***" << endl << endl;
 			setMiss(getMiss()+1);
 			v[end % getLinhas()]=end;
 		}
@@ -296,7 +296,7 @@ int Cache::substituicaoCache(int *v, int *f, int end){
 
 	for(int i=0; i<getLinhas(); i++){
 		if(v[i]==end){
-			cout << endl << endl << " -> --- HIT ---" << endl << endl;
+			cout << endl << endl << " -> *** HIT ***" << endl << endl;
 			setHit(getHit()+1);
 			if(3==getPoliticaSubistituicao()){
 				f[i]++;
@@ -311,7 +311,7 @@ int Cache::substituicaoCache(int *v, int *f, int end){
 			aux=i;
 		}
 	}
-	cout << endl << endl << " -> --- MISS ---" << endl << endl;
+	cout << endl << endl << " -> *** MISS ***" << endl << endl;
 	setMiss(getMiss()+1);
 
 	if(freeFlag) {
@@ -397,11 +397,17 @@ int Cache::substituicaoCache(int *v, int *f, int end){
 void Cache::criar(){
 	if(getMapeamento()==3){
 		int **m = new int*[getVias()];
-		for(int i=0; i<getVias(); i++) m[i]=new int[getLinhas()];
-
+		
+		for(int i=0; i<getVias(); i++) {
+		
+			m[i]=new int[getLinhas()];
+		}
 		int **fm = new int*[getVias()];
-		for(int i=0; i<getVias(); i++) fm[i]=new int[getLinhas()];
-
+		
+		for(int i=0; i<getVias(); i++){
+			fm[i]=new int[getLinhas()];
+		}
+		
 		for(int i=0; i<getVias(); i++){
 			for(int j=0; j<getLinhas(); j++){
 				m[i][j]=-1;
@@ -475,7 +481,7 @@ void Cache::exibirCache(){
 void Cache::exibirFreq(){
 	int *f = getFreq();
 	int *v = getVetor();
-	cout << "------- Frequencia -------" <<endl;
+	cout << "******* Frequencia *******" <<endl;
 	cout << "[ ";
 	for (int i=0; i<getLinhas(); i++) {
 		if(v[i]>=0)cout << setw(2) << f[i] << " ";
@@ -492,7 +498,7 @@ void Cache::exibirFreq(){
 /** Funcao que imprime a matriz de cache ()*/
 void Cache::exibirCacheMatriz(){
 	int **m = getMatriz();
-	cout << "------- Cache -------" <<endl;
+	cout << "******* Cache *******" <<endl;
 	for(int i=0; i<getVias(); i++){
 		cout << "[ ";
 		for (int j=0; j<getLinhas(); j++) {
@@ -515,7 +521,7 @@ void Cache::exibirCacheMatriz(){
 void Cache::exibirFreqMatriz(){
 	int **m = getMatriz();
 	int **fm = getFreqMatriz();
-	cout << "------- Frequencia -------" <<endl;
+	cout << "******* Frequencia *******" <<endl;
 	for(int i=0; i<getVias(); i++){
 		cout << "[ ";
 		for (int j=0; j<getLinhas(); j++) {

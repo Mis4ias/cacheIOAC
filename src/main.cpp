@@ -26,7 +26,7 @@ int main (){
 	loadData(&dados, &arquivo);
 
 	arquivo.close();
-	cout << "===========================================" << endl;
+	cout << "___________________________________________" << endl;
 	cout << "Palavras por bloco: 	  -> " << dados.getPalavras() << endl;
 	cout << "Linhas da cache: 	  -> " << dados.getLinhas() << endl;
 	cout << "Blocos da principal: 	  -> " << dados.getPrincipal() << endl;
@@ -37,7 +37,7 @@ int main (){
 	dados.criar();
 	dados.mainCache();
 	
-	cout << "===========================================" << endl;
+	cout << "____________________________________________" << endl;
 
 	cout << "Hit:	-> " << dados.getHit() << endl;
 	cout << "Miss: 	-> " << dados.getMiss() << endl;

@@ -25,9 +25,11 @@ using std::exit;
 /** Funcao que abre o arquivo e verifica se eh valido */
 void abrirArquivo(ifstream *arquivo){
 	string arq;
+	cout << "*** Bem Vindo ao Simulador de Cache ***"<<endl;
+	cout <<"Endereco Padrao -> ./data/dados.txt"<<endl; 
 	cout << "Digite o endereco do arquivo: ";
-	//cin >> arq;
-	arq = "../data/dados.txt";
+	cin >> arq;
+	//arq = "../data/dados.txt";
 
 	arquivo->open(arq);
 	if(!(*arquivo)){
