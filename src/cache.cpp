@@ -1,6 +1,3 @@
-#ifndef __CACHE_H__
-#define __CACHE_H__
-
 #include "StrucMemory.h"
 #include "cache.h"
 #include <vector>
@@ -52,6 +49,3 @@ using namespace std;
 	*  ms A nova quantidade de misses*/
 	void Cache::setMiss(int ms)			{ miss = ms;			}
 
-
-
-#endif //__CACHE_H__
