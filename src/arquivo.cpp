@@ -26,7 +26,6 @@ using std::exit;
 void abrirArquivo(ifstream *arquivo){
 	string arq;
 	cout << "*** Bem Vindo ao Simulador de Cache ***"<<endl;
-	cout <<"Endereco Padrao -> ./data/dados.txt"<<endl; 
 	cout << "Digite o endereco do arquivo: ";
 	cin >> arq;
 	//arq = "../data/dados.txt";
@@ -53,7 +52,7 @@ void loadData(Cache* dados, ifstream* arquivo){
 	dados->setLinhas(atoi(aux.c_str()));
 
 	getline(*arquivo, aux);
-	dados->setMemPrincipal(atoi(aux.c_str()));
+	dados->setPrincipal(atoi(aux.c_str()));
 
 	getline(*arquivo, aux);
 	dados->setMapeamento(atoi(aux.c_str()));
