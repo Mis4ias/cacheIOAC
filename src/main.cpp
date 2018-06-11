@@ -18,14 +18,14 @@ using std::ifstream;
 
 /**@brief Funcao principal */
 int main (){
-	/*
+	
 	srand(time(NULL));
 	ifstream arquivo;
 	Cache dados;
 	abrirArquivo(&arquivo);
 
 	loadData(&dados, &arquivo);
-	*/
+	
 	
 
 	return 0;

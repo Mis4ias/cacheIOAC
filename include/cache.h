@@ -74,5 +74,7 @@ class Cache{
 		/**@brief Atualiza a quantidade de misses
 		* @param ms A nova quantidade de misses*/
 		void setMiss(int ms);
+		
+		void startCache();
 };
 #endif //__CACHE_H__

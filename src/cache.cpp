@@ -48,4 +48,12 @@ using namespace std;
 	/** Atualiza a quantidade de misses
 	*  ms A nova quantidade de misses*/
 	void Cache::setMiss(int ms)			{ miss = ms;			}
+	void Cache::startCache(){
+		for(int i=0;i<qtdLinhas;i++){	
+			for(int j=0;j<qtdPalavras;j++){	
+			cache.first.push_back(i);
+
+			}		
+		}
+	}
 
