@@ -9,7 +9,7 @@
 #define __STRUCMEMORY_H__
 
 
-#include <ostream>
+#include <iostream>
 
 
 
@@ -24,31 +24,32 @@
 
 class StrucMemory {
 
-	private: int blocos;
-	private: int endereco;
-	private: int conteudo;
+private:
+	int blocos;
+	int endereco;
+	int conteudo;
 
-
+public:
 	/** Construtor Padrao **/
-	public: StrucMemory(int argblocos, int argendereco, int argconteudo);
+	 StrucMemory(int b, int e, int c);
 	
 
 	/** Destrutor 
 	 * @brief Destrutor do objeto.
 	 * **/
-	public: ~StrucMemory() {	}	
+	 ~StrucMemory();
 	
 			
 	/** Get **/
-	public: int get_blocos();
-	public: int get_endereco();
-	public: int get_conteudo();
+	 int  get_blocos();
+	 int get_endereco();
+	 int get_conteudo();
 	
 
 	/** Set **/
-	public: void set_blocos(int argblocos);
-	public: void set_endereco(int argendereco);
-	public: void set_conteudo(int argconteudo);
+	 void set_blocos(int argblocos);
+	 void set_endereco(int argendereco);
+	 void set_conteudo(int argconteudo);
 
 
 	/** 
@@ -57,9 +58,6 @@ class StrucMemory {
 	 * @param const StrucMemory objeto.
 	 * @return ostream objeto.
 	 * **/
-	friend std::ostream& operator <<(std::ostream& oss, const StrucMemory& obj){
-			oss<<obj.blocos<<"--"<<obj.endereco<<"--"<<obj.conteudo<<std::endl;
-	return oss;
-	}
+	friend std::ostream& operator <<(std::ostream& oss, const StrucMemory& obj);
 };
 #endif // __StrucMemory___

@@ -5,12 +5,9 @@
  **/
 
 
-#ifndef __STRUCMEMORY_H__
-#define __STRUCMEMORY_H__
-
-
-#include <ostream>
-
+#include <iostream>
+#include "StrucMemory.h"
+using namespace std;
 
 /**
  * @class StrucMemory 
@@ -21,43 +18,42 @@
  **/
 
 
-class StrucMemory {
 
+
+	
 
 	/** Construtor Padrao **/
-	public: StrucMemory(int argblocos, int argendereco, int argconteudo) {
-			this->blocos=argblocos;
-			this->endereco=argendereco; 
-			this->conteudo=argconteudo; 
-	}
+	StrucMemory::StrucMemory(int b,int e,int c): blocos(b), endereco(e), conteudo(c) { }
+	
 	
 
 	/** Destrutor 
 	 * @brief Destrutor do objeto.
 	 * **/
-	public: ~StrucMemory() {	}	
+ 
+	StrucMemory::~StrucMemory() { }
 	
 			
 	/** Get **/
-	public: int get_blocos(){
+	int StrucMemory::get_blocos(){
 		return this->blocos;
 	}
-	public: int get_endereco(){
+	int StrucMemory::get_endereco(){
 		return this->endereco;
 	}
-	public: int get_conteudo(){
+	int StrucMemory::get_conteudo(){
 		return this->conteudo;
 	}
 	
 
 	/** Set **/
-	public: void set_blocos(int argblocos){		
+	void StrucMemory::set_blocos(int argblocos){		
 		this->blocos = argblocos;
 	}
-	public: void set_endereco(int argendereco){
+	void StrucMemory::set_endereco(int argendereco){
 		this->endereco = argendereco;
 	}
-	public: void set_conteudo(int argconteudo){
+	void StrucMemory::set_conteudo(int argconteudo){
 		this->conteudo = argconteudo;
 	}
 
@@ -68,9 +64,8 @@ class StrucMemory {
 	 * @param const StrucMemory objeto.
 	 * @return ostream objeto.
 	 * **/
-	friend std::ostream& operator <<(std::ostream& oss, const StrucMemory& obj){
-			oss<<obj.blocos<<"--"<<obj.endereco<<"--"<<obj.conteudo<<std::endl;
-	return oss;
+	ostream& operator <<(ostream& oss, const StrucMemory& obj){
+			oss<<obj.blocos<<"--"<<obj.endereco<<"--"<<obj.conteudo<<endl;
+		return oss;
 	}
-};
-#endif // __StrucMemory___
+

@@ -25,8 +25,8 @@ int main (){
 	abrirArquivo(&arquivo);
 
 	loadData(&dados, &arquivo);
-	
-	
-
+	dados.startCache();
+	dados.startMemPrincipal();
+	dados.show();
 	return 0;
 }

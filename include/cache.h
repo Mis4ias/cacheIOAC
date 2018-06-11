@@ -76,5 +76,8 @@ class Cache{
 		void setMiss(int ms);
 		
 		void startCache();
+
+		void startMemPrincipal();
+		void show();
 };
 #endif //__CACHE_H__

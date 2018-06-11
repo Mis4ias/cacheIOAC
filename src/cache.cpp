@@ -48,12 +48,32 @@ using namespace std;
 	/** Atualiza a quantidade de misses
 	*  ms A nova quantidade de misses*/
 	void Cache::setMiss(int ms)			{ miss = ms;			}
+	
 	void Cache::startCache(){
+		StrucMemory aux (0, 0, 0);
 		for(int i=0;i<qtdLinhas;i++){	
 			for(int j=0;j<qtdPalavras;j++){	
-			cache.first.push_back(i);
+				
+				cache.push_back(make_pair(i, aux));
 
 			}		
 		}
+		
 	}
+	void Cache::startMemPrincipal(){
+		StrucMemory aux (0, 0, 0);
+		for(int i=0;i<(qtdPalavras*memPrincipal);i++)		
+			principalMemoria.push_back(aux);
+				
+	}
+	void Cache::show(){
+		cout<<"--- Cache ---"<<endl;
+		for(int i=0;i<(qtdPalavras*qtdLinhas);i++){
+			cout<<cache[i].first<<"--"<<cache[i].second<<endl;
+		}
+		cout<<"--- Principal ---"<<endl;
 
+		for(int j=0;j<(qtdPalavras*memPrincipal);j++){
+			cout<<principalMemoria[j]<<endl;
+		}
+	}

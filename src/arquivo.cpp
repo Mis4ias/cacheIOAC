@@ -4,23 +4,12 @@
  */
 
 #include <iostream>
-using std::cout;
-using std::cerr;
-using std::cin;
-using std::getline;
-using std::endl;
-
 #include <string>
-using std::string;
-
 #include <fstream>
-using std::ifstream;
-
 #include <cstdlib>
-using std::exit;
-
 #include "arquivo.h"
 #include "cache.h"
+using namespace std;
 
 /** Funcao que abre o arquivo e verifica se eh valido */
 void abrirArquivo(ifstream *arquivo){
