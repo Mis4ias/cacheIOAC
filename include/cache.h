@@ -1,7 +1,9 @@
 #ifndef __CACHE_H__
 #define __CACHE_H__
 
-
+#include "StrucMemory.h"
+#include <vector>
+#include <iostream>
 using namespace std;
 class Cache{
 	private:
@@ -16,60 +18,61 @@ class Cache{
 		int miss;
 		int hit;
 	public:
+		Cache();
 		/**@return Retorna a quantidade de palavras por bloco*/
-		int Cache::getPalavras();
+		int getPalavras();
 
 		/**@return Retorna a quantidade de linhas da cache */
-		int Cache::getLinhas();
+		int getLinhas();
 
 		/**@return Retorna a quantidade de blocos da memoria principal */
-		int Cache::getPrincipal();
+		int getPrincipal();
 
 		/**@return Retorna o tipo de mapeamento */
-		int Cache::getMapeamento();
+		int getMapeamento();
 
 		/**@return Retorna a quantidade de vias (N-way) */
-		int Cache::getVias();
+		int getVias();
 
 		/**@return Retorna a politica de substituicao */
-		int Cache::getPoliticaSubistituicao();
+		int getPoliticaSubistituicao();
 
 		/**@return Retorna a quantidade de hits*/
-		int Cache::getHit();
+		int getHit();
 
 		/**@return Retorna a quantidade de misses */
-		int Cache::getMiss();
+		int getMiss();
 
 		/**@brief Atualiza a quantidade de palavras
 		* @param p A nova quantidade de palavras */
-		void Cache::setPalavras(int p);
+		void setPalavras(int p);
 
 		/**@brief Atualiza a quantidade de linhas
 		* @param l A nova quantidade de linhas*/
-		void Cache::setLinhas(int l);
+		void setLinhas(int l);
 
 		/**@brief Atualiza a quantidade de blocos da memoria principal
 		* @param m A nova quantidade de blocos da memoria principal*/
-		void Cache::setPrincipal(int m);
+		void setPrincipal(int m);
 
 		/**@brief Atualiza a nova forma de mapeamento
 		* @param mp A nova nova forma de mapeamento*/
-		void Cache::setMapeamento(int mp);
+		void setMapeamento(int mp);
 
 		/**@brief Atualiza a quantidade de vias (N-way)
 		* @param v A nova quantidade de vias (N-way)*/
-		void Cache::setVias(int v);
+		void setVias(int v);
 
 		/**@brief Atualiza a politica de substituicao 
 		* @param s A nova politica de substituicao */
-		void Cache::setPoliticaSubistituicao(int s);
+		void setPoliticaSubistituicao(int s);
 
 		/**@brief Atualiza a quantidade de hits
 		* @param h A nova quantidade de hits*/
-		void Cache::setHit(int h);
+		void setHit(int h);
 
 		/**@brief Atualiza a quantidade de misses
 		* @param ms A nova quantidade de misses*/
-		void Cache::setMiss(int ms);
+		void setMiss(int ms);
 };
 #endif //__CACHE_H__
