@@ -2,7 +2,7 @@
 #include "cache.h"
 #include <vector>
 #include <iostream>
-
+#include <string>
 using namespace std;
 	Cache::Cache(){
 		hit=0;
@@ -76,4 +76,24 @@ using namespace std;
 		for(int j=0;j<(qtdPalavras*memPrincipal);j++){
 			cout<<principalMemoria[j]<<endl;
 		}
+	}
+	void Cache::mainCache(){
+		bool stop=true;
+		string entrada;
+		string comando;
+		string end_;
+		int ende=0;
+		while(stop){
+			cout<<"Digite o Comando::";
+			cin>>entrada;
+
+			size_t pos = entrada.find(" ",0);
+			comando = entrada.substr(0,pos);
+			cout << comando;
+			//ende=stoi(end_);		
+			//cout<<ende;
+			
+			stop=false;
+		}
+	
 	}

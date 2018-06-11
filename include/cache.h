@@ -4,6 +4,7 @@
 #include "StrucMemory.h"
 #include <vector>
 #include <iostream>
+#include <string>
 using namespace std;
 class Cache{
 	private:
@@ -78,6 +79,8 @@ class Cache{
 		void startCache();
 
 		void startMemPrincipal();
+		
 		void show();
+		void mainCache();
 };
 #endif //__CACHE_H__

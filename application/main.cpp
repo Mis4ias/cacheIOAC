@@ -27,6 +27,6 @@ int main (){
 	loadData(&dados, &arquivo);
 	dados.startCache();
 	dados.startMemPrincipal();
-	dados.show();
+	dados.mainCache();
 	return 0;
 }

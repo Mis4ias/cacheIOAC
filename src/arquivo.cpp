@@ -15,9 +15,9 @@ using namespace std;
 void abrirArquivo(ifstream *arquivo){
 	string arq;
 	cout << "*** Bem Vindo ao Simulador de Cache ***"<<endl;
-	cout << "Digite o endereco do arquivo: ";
-	cin >> arq;
-	//arq = "../data/dados.txt";
+	//cout << "Digite o endereco do arquivo: ";
+	//cin >> arq;
+	arq = "../data/dados.txt";
 
 	arquivo->open(arq);
 	if(!(*arquivo)){
