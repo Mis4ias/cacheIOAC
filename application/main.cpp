@@ -30,7 +30,8 @@ int main (){
 	param=dados.mainCache();
 	if(param==1){
 		dados.show();
-	}else{
+	}
+	if(param==-1){
 		cout<<"COMANDO ERRADO !!!!!! Finalizando...."<<endl;
 	}
 	

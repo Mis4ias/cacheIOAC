@@ -94,6 +94,7 @@ using namespace std;
 			getline(cin,entrada);
 			pos = entrada.find(" ");
 			comando = entrada.substr(0,pos);
+			
 			pos2 = entrada.find(" ",pos+1);
 			if(pos2>0){
 				ende=stoi(entrada.substr(pos,pos2));
@@ -101,7 +102,9 @@ using namespace std;
 			}else{
 				ende=stoi(entrada.substr(pos,(entrada.size()-pos)));
 			}
+
 			if(comando.compare("Read")==0){
+			
 				for(int i=0;i<int(cache.size());i++){
 					if(cache[i].second.get_endereco()==ende){
 						cout<<"HIT Linha"<<cache[i].first<<endl;
@@ -124,6 +127,7 @@ using namespace std;
 				}
 			}
 			if (comando.compare("Write")==0){
+			
 				principalMemoria[ende].set_conteudo(cont);
 				for(int i=0;i<int(cache.size());i++){
 					if(cache[i].second.get_endereco()==ende){
@@ -146,10 +150,10 @@ using namespace std;
 					cout<<"MISS -> Alocado na linha "<<ende/qtdLinhas<<" Bloco "<<ende/qtdPalavras<<" substituido"<<endl;
 				}
 			}
+			
 			if(comando.compare("Show")==0){
+				
 				return 1;
-			}else{
-				return 0;
 			}
 		}
 	
