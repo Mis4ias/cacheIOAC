@@ -18,7 +18,7 @@ using std::ifstream;
 
 /**@brief Funcao principal */
 int main (){
-	
+	int param=-1;
 	srand(time(NULL));
 	ifstream arquivo;
 	Cache dados;
@@ -27,8 +27,12 @@ int main (){
 	loadData(&dados, &arquivo);
 	dados.startCache();
 	dados.startMemPrincipal();
-	dados.mainCache();
-	dados.show();
+	param=dados.mainCache();
+	if(param==1){
+		dados.show();
+	}else{
+		cout<<"COMANDO ERRADO !!!!!! Finalizando...."<<endl;
+	}
 	
 	return 0;
 }

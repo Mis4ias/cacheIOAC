@@ -81,6 +81,6 @@ class Cache{
 		void startMemPrincipal();
 
 		void show();
-		void mainCache();
+		int mainCache();
 };
 #endif //__CACHE_H__

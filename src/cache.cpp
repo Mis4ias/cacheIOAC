@@ -82,47 +82,75 @@ using namespace std;
 		}
 	}
 
-	void Cache::mainCache(){
-		bool stop=true;
+	int Cache::mainCache(){
 		bool achou=false;
 		string entrada;
 		string comando;
 		int ende=0;
-		int pos;
-		while(stop){
+		int cont=0;
+		int pos,pos2=0;
+		while(1==1){
 			cout<<"Digite o Comando::";
 			getline(cin,entrada);
 			pos = entrada.find(" ");
 			comando = entrada.substr(0,pos);
-			ende=stoi(entrada.substr(pos,(entrada.size()-pos)));
+			pos2 = entrada.find(" ",pos+1);
+			if(pos2>0){
+				ende=stoi(entrada.substr(pos,pos2));
+				cont=stoi(entrada.substr(pos2,(entrada.size()-pos2)));
+			}else{
+				ende=stoi(entrada.substr(pos,(entrada.size()-pos)));
+			}
 			if(comando.compare("Read")==0){
-				for(int i=0;i<cache.size();i++){
+				for(int i=0;i<int(cache.size());i++){
 					if(cache[i].second.get_endereco()==ende){
 						cout<<"HIT Linha"<<cache[i].first<<endl;
 						hit+=1;
 						achou=true;
-					}
+					} 
 				}
-				if(achou==false){
-					//erros aqui 
-					for(int j=0;j<principalMemoria.size();j++){
-						if(principalMemoria[j].get_blocos()==(ende/qtdPalavras)){
-							for(int m=0;m<cache.size();m++){
-								if(cache[m].first==(ende%qtdLinhas)){
-									for(int n=0;n<qtdPalavras;n++){
-										cache[m+n].second=principalMemoria[j+n];
-									}
+				if(achou==false){				 
+					for (int j = 0; j <int(principalMemoria.size()); ++j){
+						if(principalMemoria[j].get_blocos()==int(ende/qtdPalavras)){
+							for(int m=0;m<int(cache.size());m++){
+								if(cache[m].first==int(ende/qtdLinhas)){
+									cache[m].second=principalMemoria[j];
+									j+=1;
 								}
 							}
 						}
 					}
-					cout<<"MISS -> Alocado na linha"<<ende%qtdLinhas<<"Bloco"<<ende/qtdPalavras<<"substituido"<<endl;
+					cout<<"MISS -> Alocado na linha "<<ende/qtdLinhas<<" Bloco "<<ende/qtdPalavras<<" substituido"<<endl;
 				}
 			}
-		
-					
-			
-			stop=false;
+			if (comando.compare("Write")==0){
+				principalMemoria[ende].set_conteudo(cont);
+				for(int i=0;i<int(cache.size());i++){
+					if(cache[i].second.get_endereco()==ende){
+						cout<<"HIT Linha"<<cache[i].first<<endl;
+						hit+=1;
+						achou=true;
+					} 
+				}
+				if(achou==false){				 
+					for (int j = 0; j <int(principalMemoria.size()); ++j){
+						if(principalMemoria[j].get_blocos()==int(ende/qtdPalavras)){
+							for(int m=0;m<int(cache.size());m++){
+								if(cache[m].first==int(ende/qtdLinhas)){
+									cache[m].second=principalMemoria[j];
+									j+=1;
+								}
+							}
+						}
+					}
+					cout<<"MISS -> Alocado na linha "<<ende/qtdLinhas<<" Bloco "<<ende/qtdPalavras<<" substituido"<<endl;
+				}
+			}
+			if(comando.compare("Show")==0){
+				return 1;
+			}else{
+				return 0;
+			}
 		}
 	
 	}
