@@ -79,7 +79,7 @@ class Cache{
 		void startCache();
 
 		void startMemPrincipal();
-		
+
 		void show();
 		void mainCache();
 };
