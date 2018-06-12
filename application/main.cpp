@@ -28,5 +28,6 @@ int main (){
 	dados.startCache();
 	dados.startMemPrincipal();
 	dados.mainCache();
+	dados.show();
 	return 0;
 }

@@ -63,6 +63,8 @@ using namespace std;
 	void Cache::startMemPrincipal(){
 		StrucMemory aux (0, 0, 0);
 		for(int i=0;i<(qtdPalavras*memPrincipal);i++)		
+		// mecher aqui//	
+			StrucMemory aux (0, i, 0);
 			principalMemoria.push_back(aux);
 				
 	}
@@ -90,7 +92,7 @@ using namespace std;
 			pos = entrada.find(" ");
 			comando = entrada.substr(0,pos);
 			ende=stoi(entrada.substr(pos,(entrada.size()-pos)));
-		
+
 					
 			
 			stop=false;
