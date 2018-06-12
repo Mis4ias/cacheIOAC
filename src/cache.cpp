@@ -46,7 +46,7 @@ using namespace std;
 	*  h A nova quantidade de hits*/
 	void Cache::setHit(int h)			{ hit = h;				}
 	/** Atualiza a quantidade de misses
-	*  ms A nova quantidade de misses*/
+	*  ms A nova quantidade dse misses*/
 	void Cache::setMiss(int ms)			{ miss = ms;			}
 	
 	void Cache::startCache(){
@@ -61,20 +61,22 @@ using namespace std;
 		
 	}
 	void Cache::startMemPrincipal(){
-		StrucMemory aux (0, 0, 0);
-		for(int i=0;i<(qtdPalavras*memPrincipal);i++)		
-		// mecher aqui//	
-			StrucMemory aux (0, i, 0);
+		int cont=0;
+		for(int i=1;i<=(qtdPalavras*memPrincipal);i++){			
+			StrucMemory aux (cont, i-1, 0);
 			principalMemoria.push_back(aux);
-				
+			if(i%4==0)
+				cont++;
+		}
 	}
 	void Cache::show(){
 		cout<<"--- Cache ---"<<endl;
+		cout<<"L--B--E--C"<<endl;
 		for(int i=0;i<(qtdPalavras*qtdLinhas);i++){
 			cout<<cache[i].first<<"--"<<cache[i].second<<endl;
 		}
 		cout<<"--- Principal ---"<<endl;
-
+		cout<<"B--E--C"<<endl;
 		for(int j=0;j<(qtdPalavras*memPrincipal);j++){
 			cout<<principalMemoria[j]<<endl;
 		}
@@ -82,6 +84,7 @@ using namespace std;
 
 	void Cache::mainCache(){
 		bool stop=true;
+		bool achou=false;
 		string entrada;
 		string comando;
 		int ende=0;
@@ -92,7 +95,31 @@ using namespace std;
 			pos = entrada.find(" ");
 			comando = entrada.substr(0,pos);
 			ende=stoi(entrada.substr(pos,(entrada.size()-pos)));
-
+			if(comando.compare("Read")==0){
+				for(int i=0;i<cache.size();i++){
+					if(cache[i].second.get_endereco()==ende){
+						cout<<"HIT Linha"<<cache[i].first<<endl;
+						hit+=1;
+						achou=true;
+					}
+				}
+				if(achou==false){
+					//erros aqui 
+					for(int j=0;j<principalMemoria.size();j++){
+						if(principalMemoria[j].get_blocos()==(ende/qtdPalavras)){
+							for(int m=0;m<cache.size();m++){
+								if(cache[m].first==(ende%qtdLinhas)){
+									for(int n=0;n<qtdPalavras;n++){
+										cache[m+n].second=principalMemoria[j+n];
+									}
+								}
+							}
+						}
+					}
+					cout<<"MISS -> Alocado na linha"<<ende%qtdLinhas<<"Bloco"<<ende/qtdPalavras<<"substituido"<<endl;
+				}
+			}
+		
 					
 			
 			stop=false;
