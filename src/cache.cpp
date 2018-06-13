@@ -3,6 +3,7 @@
 #include <vector>
 #include <iostream>
 #include <string>
+#include <sstream>
 using namespace std;
 	Cache::Cache(){
 		hit=0;
@@ -50,7 +51,7 @@ using namespace std;
 	void Cache::setMiss(int ms)			{ miss = ms;			}
 	
 	void Cache::startCache(){
-		StrucMemory aux (0, 0, 0);
+		StrucMemory aux (-1, -1, -1);
 		for(int i=0;i<qtdLinhas;i++){	
 			for(int j=0;j<qtdPalavras;j++){	
 				
@@ -72,12 +73,12 @@ using namespace std;
 	void Cache::show(){
 		
 		cout<<"--- Cache ---"<<endl;
-		cout<<"L--B--E--C"<<endl;
+		cout<<"L	B	E	C"<<endl;
 		for(int i=0;i<(qtdPalavras*qtdLinhas);i++){
-			cout<<cache[i].first<<"--"<<cache[i].second<<endl;
+			cout<<cache[i].first<<"	"<<cache[i].second<<endl;
 		}
 		cout<<"--- Principal ---"<<endl;
-		cout<<"B--E--C"<<endl;
+		cout<<"B	E	C"<<endl;
 		for(int j=0;j<(qtdPalavras*memPrincipal);j++){
 			cout<<principalMemoria[j]<<endl;
 		}
@@ -102,6 +103,11 @@ using namespace std;
 		while(1==1){
 			cout<<"Digite o Comando::";
 			getline(cin,entrada);//le a linha de entrada
+			
+			if(entrada.compare("Show")==0){
+				return 1;
+			}
+
 			pos = entrada.find(" ");// procura por espaços para separar 
 			
 			comando = entrada.substr(0,pos);//cria uma substring so primeiro caracter ate o primeiro espaço
@@ -114,7 +120,7 @@ using namespace std;
 			}else{
 				ende=stoi(entrada.substr(pos,(entrada.size()-pos)));//se nao houver pega so endereco
 			}
-
+			
 			if(comando.compare("Read")==0){//leitura
 			
 				for(int i=0;i<int(cache.size());i++){//procura na cache o endereco
@@ -157,7 +163,6 @@ using namespace std;
 							for(int m=0;m<int(cache.size());m++){
 								if(cache[m].first==int(ende/qtdLinhas)){
 									cache[m].second=principalMemoria[j];
-									cache[j].second.set_conteudo(cont);
 									j+=1;
 								}
 							}
@@ -167,10 +172,7 @@ using namespace std;
 				}
 			}
 			
-			if(comando.compare("Show")==0){
-				
-				return 1;
-			}
+
 		}
 	
 	}

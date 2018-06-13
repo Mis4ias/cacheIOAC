@@ -65,7 +65,7 @@ using namespace std;
 	 * @return ostream objeto.
 	 * **/
 	ostream& operator <<(ostream& oss, const StrucMemory& obj){
-			oss<<obj.blocos<<"--"<<obj.endereco<<"--"<<obj.conteudo<<endl;
+			oss<<obj.blocos<<"	"<<obj.endereco<<"	"<<obj.conteudo<<endl;
 		return oss;
 	}
 
