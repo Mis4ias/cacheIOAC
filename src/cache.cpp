@@ -93,7 +93,7 @@ using namespace std;
 	}
 	// main da cache 
 	int Cache::mainCache(){
-		bool achou=false;
+		bool achou;
 		string entrada;
 		string comando;
 		int ende=0;//endereco
@@ -101,6 +101,7 @@ using namespace std;
 		int pos,pos2=0;//toquens para separar espacos
 		//fica em loop lendo cada comando ate o show onde return 1 e sai do loop
 		while(1==1){
+			achou=false;
 			cout<<"Digite o Comando::";
 			getline(cin,entrada);//le a linha de entrada
 			
@@ -122,7 +123,6 @@ using namespace std;
 			}
 			
 			if(comando.compare("Read")==0){//leitura
-			
 				for(int i=0;i<int(cache.size());i++){//procura na cache o endereco
 					if(cache[i].second.get_endereco()==ende){// se achar da hit 
 						cout<<"HIT Linha"<<cache[i].first<<endl;
@@ -134,7 +134,7 @@ using namespace std;
 					for (int j = 0; j <int(principalMemoria.size()); ++j){
 						if(principalMemoria[j].get_blocos()==int(ende/qtdPalavras)){
 							for(int m=0;m<int(cache.size());m++){
-								if(cache[m].first==int(ende%qtdLinhas)){
+								if(cache[m].first==int((ende/qtdLinhas)%4)){
 									cache[m].second=principalMemoria[j];
 									j+=1;
 								}
@@ -142,7 +142,7 @@ using namespace std;
 						}
 					}
 					miss+=1;
-					cout<<"MISS -> Alocado na linha "<<ende%qtdLinhas<<" Bloco "<<ende/qtdPalavras<<" substituido"<<endl;
+					cout<<"MISS -> Alocado na linha "<<(ende/qtdLinhas)%4<<" Bloco "<<(ende/qtdPalavras)<<" substituido"<<endl;
 				}
 			}
 			if (comando.compare("Write")==0){
@@ -161,14 +161,14 @@ using namespace std;
 					for (int j = 0; j <int(principalMemoria.size()); ++j){
 						if(principalMemoria[j].get_blocos()==int(ende/qtdPalavras)){
 							for(int m=0;m<int(cache.size());m++){
-								if(cache[m].first==int(ende/qtdLinhas)){
+								if(cache[m].first==int((ende/qtdLinhas))%4){
 									cache[m].second=principalMemoria[j];
 									j+=1;
 								}
 							}
 						}
 					}
-					cout<<"MISS -> Alocado na linha "<<ende/qtdLinhas<<" Bloco "<<ende/qtdPalavras<<" substituido"<<endl;
+					cout<<"MISS -> Alocado na linha "<<(ende/qtdLinhas)%4<<" Bloco "<<(ende/qtdPalavras)<<" substituido"<<endl;
 				}
 			}
 			
