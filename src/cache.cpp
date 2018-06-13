@@ -70,6 +70,7 @@ using namespace std;
 		}
 	}
 	void Cache::show(){
+		
 		cout<<"--- Cache ---"<<endl;
 		cout<<"L--B--E--C"<<endl;
 		for(int i=0;i<(qtdPalavras*qtdLinhas);i++){
@@ -80,39 +81,50 @@ using namespace std;
 		for(int j=0;j<(qtdPalavras*memPrincipal);j++){
 			cout<<principalMemoria[j]<<endl;
 		}
+		cout<<"Numero de MISS:"<<getMiss()<<endl;
+		cout<<"Numero de HIT:"<<getHit()<<endl;
+		if ((getMiss()+getHit())>0){
+			float porcentagem =(getHit()*100)/(getMiss()+getHit());
+			cout<<"Porcentagem de Acertos:"<<porcentagem<<"%"<<endl;
+		}else{
+			cout<<"Porcentagem de Acertos:"<<0<<"%"<<endl;
+		}
 	}
-
+	// main da cache 
 	int Cache::mainCache(){
 		bool achou=false;
 		string entrada;
 		string comando;
-		int ende=0;
-		int cont=0;
-		int pos,pos2=0;
+		int ende=0;//endereco
+		int cont=0;//conteudo do endereco
+		int pos,pos2=0;//toquens para separar espacos
+		//fica em loop lendo cada comando ate o show onde return 1 e sai do loop
 		while(1==1){
 			cout<<"Digite o Comando::";
-			getline(cin,entrada);
-			pos = entrada.find(" ");
-			comando = entrada.substr(0,pos);
+			getline(cin,entrada);//le a linha de entrada
+			pos = entrada.find(" ");// procura por espaços para separar 
 			
-			pos2 = entrada.find(" ",pos+1);
-			if(pos2>0){
-				ende=stoi(entrada.substr(pos,pos2));
-				cont=stoi(entrada.substr(pos2,(entrada.size()-pos2)));
+			comando = entrada.substr(0,pos);//cria uma substring so primeiro caracter ate o primeiro espaço
+			
+			pos2 = entrada.find(" ",pos+1);//verifica se ha mais espaços 
+			
+			if(pos2>0){//se houver mais de um spaco sabece que e o comando write
+				ende=stoi(entrada.substr(pos,pos2));//endereco
+				cont=stoi(entrada.substr(pos2,(entrada.size()-pos2)));//conteudo do endereco
 			}else{
-				ende=stoi(entrada.substr(pos,(entrada.size()-pos)));
+				ende=stoi(entrada.substr(pos,(entrada.size()-pos)));//se nao houver pega so endereco
 			}
 
-			if(comando.compare("Read")==0){
+			if(comando.compare("Read")==0){//leitura
 			
-				for(int i=0;i<int(cache.size());i++){
-					if(cache[i].second.get_endereco()==ende){
+				for(int i=0;i<int(cache.size());i++){//procura na cache o endereco
+					if(cache[i].second.get_endereco()==ende){// se achar da hit 
 						cout<<"HIT Linha"<<cache[i].first<<endl;
 						hit+=1;
 						achou=true;
 					} 
 				}
-				if(achou==false){				 
+				if(achou==false){//se nao achar procura na memoria principa e tras pra cache e da miss
 					for (int j = 0; j <int(principalMemoria.size()); ++j){
 						if(principalMemoria[j].get_blocos()==int(ende/qtdPalavras)){
 							for(int m=0;m<int(cache.size());m++){
@@ -123,6 +135,7 @@ using namespace std;
 							}
 						}
 					}
+					miss+=1;
 					cout<<"MISS -> Alocado na linha "<<ende/qtdLinhas<<" Bloco "<<ende/qtdPalavras<<" substituido"<<endl;
 				}
 			}
@@ -132,8 +145,10 @@ using namespace std;
 				for(int i=0;i<int(cache.size());i++){
 					if(cache[i].second.get_endereco()==ende){
 						cout<<"HIT Linha"<<cache[i].first<<endl;
+						cache[i].second.set_conteudo(cont);
 						hit+=1;
 						achou=true;
+						
 					} 
 				}
 				if(achou==false){				 
@@ -142,6 +157,7 @@ using namespace std;
 							for(int m=0;m<int(cache.size());m++){
 								if(cache[m].first==int(ende/qtdLinhas)){
 									cache[m].second=principalMemoria[j];
+									cache[j].second.set_conteudo(cont);
 									j+=1;
 								}
 							}
