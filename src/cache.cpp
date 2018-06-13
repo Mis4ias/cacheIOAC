@@ -134,7 +134,7 @@ using namespace std;
 					for (int j = 0; j <int(principalMemoria.size()); ++j){
 						if(principalMemoria[j].get_blocos()==int(ende/qtdPalavras)){
 							for(int m=0;m<int(cache.size());m++){
-								if(cache[m].first==int(ende/qtdLinhas)){
+								if(cache[m].first==int(ende%qtdLinhas)){
 									cache[m].second=principalMemoria[j];
 									j+=1;
 								}
@@ -142,7 +142,7 @@ using namespace std;
 						}
 					}
 					miss+=1;
-					cout<<"MISS -> Alocado na linha "<<ende/qtdLinhas<<" Bloco "<<ende/qtdPalavras<<" substituido"<<endl;
+					cout<<"MISS -> Alocado na linha "<<ende%qtdLinhas<<" Bloco "<<ende/qtdPalavras<<" substituido"<<endl;
 				}
 			}
 			if (comando.compare("Write")==0){
